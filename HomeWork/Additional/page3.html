@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page 3</title>
+	<style>
+		.timeline {
+			position: relative;
+			width: 90%;
+			height: 50px;
+			margin: 20px auto;
+			background-color: #ccc;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		.timeline .marker {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			top: 20px;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			background-color: yellow;
+		}
+		.timeline .line {
+			position: absolute;
+			width: 2px;
+			height: 20px;
+			top: 15px;
+			left: 0;
+			background-color: black;
+			z-index: -1;
+			cursor: pointer;
+		}
+		.timeline .line.selected {
+			background-color: red;
+		}
+		.timeline .mark {
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			top: 22px;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			background-color: white;
+			cursor: pointer;
+		}
+		.timeline .mark.selected {
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Welcome to Page 3</h1>
+
+	<!-- Add a timeline to visualize the marks -->
+	<div class="timeline"></div>
+
+	<!-- Add buttons for start and stop -->
+	<button onclick="start()">Start</button>
+	<button onclick="stop()">Stop</button>
+
+	<!-- JavaScript code for the timeline and connecting marks with lines -->
+	<script>
+		let timeline = document.querySelector('.timeline');
+		let line = document.createElement('div');
+		line.classList.add('line');
+		timeline.appendChild(line);
+
+		let marks = [];
+		let currentMark = null;
+		let currentLine = null;
+
+		function start() {
+			let marker = document.createElement('div');
+			marker.classList.add('marker');
+			timeline.appendChild(marker);
+			marks.push(marker);
+		}
+
+		function stop() {
+			let mark = document.createElement('div');
+			mark.classList.add('mark');
+			timeline.appendChild(mark);
+
+			if (currentMark) {
+				currentMark.classList.remove('selected');
+				currentMark = null;
+			}
+
+			if (currentLine) {
+				currentLine.classList.remove('selected');
+				currentLine = null;
+			}
+
+			if (marks.length > 1) {
+				let lastMark = marks[marks.length - 2];
+				let line = document.createElement('div');
+				line.classList.add('line');
+				line.style.left = lastMark.offsetLeft + 'px';
+				timeline.appendChild(line);
+				currentLine = line;
+				connect(lastMark, mark, line);
+			}
+
+			marks.push(mark);
+		}
+
+		function connect(start, end, line) {
+			let startX = start.offsetLeft + start.offsetWidth / 2;
+			let endX = end.offsetLeft + end.offsetWidth / 2;
+			let startY = start.offsetTop + start.offsetHeight / 2;
+			let endY = end.offsetTop + end.offsetHeight / 2;
+			let length = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+			let angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+
+		line.style.width = length + 'px';
+		line.style.top = startY + 'px';
+		line.style.left = startX + 'px';
+		line.style.transform = 'rotate(' + angle + 'deg)';
+	}
+
+	timeline.addEventListener('mousedown', function(event) {
+		let target = event.target;
+		if (target.classList.contains('mark')) {
+			target.classList.add('selected');
+			currentMark = target;
+			event.stopPropagation();
+		} else if (target.classList.contains('line')) {
+			target.classList.add('selected');
+			currentLine = target;
+			event.stopPropagation();
+		}
+	});
+
+	timeline.addEventListener('mousemove', function(event) {
+		if (currentMark) {
+			currentMark.style.left = (event.clientX - timeline.offsetLeft) + 'px';
+		} else if (currentLine) {
+			let startX = currentLine.offsetLeft;
+			let startY = currentLine.offsetTop + currentLine.offsetHeight / 2;
+			let endX = event.clientX - timeline.offsetLeft;
+			let endY = event.clientY - timeline.offsetTop;
+
+			let length = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+			let angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+
+			currentLine.style.width = length + 'px';
+			currentLine.style.transform = 'rotate(' + angle + 'deg)';
+		}
+	});
+
+	timeline.addEventListener('mouseup', function(event) {
+		if (currentLine) {
+			let target = event.target;
+			if (target.classList.contains('mark')) {
+				connect(currentMark, target, currentLine);
+			}
+			currentLine.classList.remove('selected');
+			currentLine = null;
+		}
+	});
+</script>
+</body>
+</html>
+
+
+

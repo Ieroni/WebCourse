@@ -1,0 +1,81 @@
+div {
+	color: #F8F8FF;
+	width: 500px;
+	margin: 0 550px auto;
+
+}
+div:hover{
+	color: greenyellow;
+}
+h2 {
+	color: #F8F8FF;
+	margin: 0 525px auto;
+
+}
+h2:hover{
+	color: greenyellow;
+}
+
+h1 {
+	color: #F8F8FF;
+	margin: 0 250px auto;
+ 	padding: 0 20px 20px 20px;
+
+ 	
+}
+h1:hover{
+	color: greenyellow;
+}
+
+html {
+	background: #000000;
+}
+
+body{
+	background-color: black;
+	font-family: 'Teddy Bear',sans-serif;
+}
+
+@font-face {
+	font-family: 'Teddy Bear';
+	src: url('fonts/teddy_bear.eot'); /* IE 9 Compatibility Mode */
+	src: url('fonts/teddy_bear.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('fonts/teddy_bear.woff2') format('woff2'), /* Super Modern Browsers */
+		url('fonts/teddy_bear.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('fonts/teddy_bear.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('fonts/teddy_bear.svg#teddy_bear') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+
+.back_btn {
+			position: fixed;
+			top: 50%;
+			left: 40%;
+			transform: translate(-50%, -50%);
+			font-size: 25px;
+			padding: 10px;
+			background-color: steelblue;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			animation: blink 5s infinite;
+		}
+		@keyframes blink {
+			0% { opacity: 1; }
+			50% { opacity: 1; }
+			100% { opacity: 1; }
+		}
+.go_to_page4_btn {
+			position: fixed;
+			top: 50%;
+			left: 55%;
+			transform: translate(-50%, -50%);
+			font-size: 25px;
+			padding: 10px;
+			background-color: steelblue;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			animation: blink 5s infinite;
+		}

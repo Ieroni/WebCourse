@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Window and Button Example</title>
+</head>
+<body>
+
+	<h1>Window and Button Example</h1>
+
+	<!-- Create the first window and button -->
+	<div>
+		<h2>Window 1</h2>
+		<button onclick="openWindow2()">Open Window 2</button>
+	</div>
+
+	<!-- Create the second window and button -->
+	<div>
+		<h2>Window 2</h2>
+		<button onclick="openPage2()">Go to Page 2</button>
+	</div>
+
+	<!-- JavaScript code to open the second window -->
+	<script>
+		function openWindow2() {
+			window.open("window2.html", "Window 2", "width=500,height=500");
+		}
+	</script>
+
+	<!-- JavaScript code to go to the second page -->
+	<script>
+		function openPage2() {
+			window.location.href = "page2.html";
+		}
+	</script>
+
+</body>
+</html>
