@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(32, 32, 32);
+    font-family: 'Rondo_AncientTwo', sans-serif;
+}
+h1 {
+    color: brown;
+}
+h2 {
+    color: darkorange;
+}
+a, p, h3, ul, ol {
+    color: aliceblue;   
+}
+a:hover {
+    color: blue;
+}
+.big_txt {
+    font-size: 1.4rem;
+}
+img {
+    width: 40vh;
+    margin-left: 25px;
+}
+@font-face {
+	font-family: 'Rondo_AncientTwo';
+	src: url('../fonts/rondo_ancienttwo.eot'); /* IE 9 Compatibility Mode */
+	src: url('../fonts/rondo_ancienttwo.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('../fonts/rondo_ancienttwo.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/rondo_ancienttwo.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('../fonts/rondo_ancienttwo.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../fonts/rondo_ancienttwo.svg#rondo_ancienttwo') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+ul {
+    list-style-type: square;
+}
+
+video{
+    margin: auto;
+}
