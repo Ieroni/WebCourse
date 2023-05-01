@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Starship task tracker</title>
+</head>
+<body>
+  <h1>Starship task tracker</h1>
+  <ul id="taskList">
+    <!-- Tasks will be added here -->
+  </ul>
+  <form>
+    <label for="summary">Summary:</label>
+    <input type="text" id="summary"><br>
+    <label for="description">Description:</label>
+    <textarea id="description"></textarea><br>
+    <button type="button" id="addButton">Add Task</button>
+  </form>
+
+  <script>
+    // Define the task object
+class Task {
+  constructor(id, summary, description, status) {
+    this.id = id;
+    this.summary = summary;
+    this.description = description;
+    this.status = status;
+  }
+}
+
+// Create an array to hold tasks
+let tasks = [];
+
+// Add some sample tasks
+tasks.push(new Task(1, 'Task 1', 'Description of task 1', 'To Do'));
+tasks.push(new Task(2, 'Task 2', 'Description of task 2', 'In Progress'));
+tasks.push(new Task(3, 'Task 3', 'Description of task 3', 'Done'));
+
+// Define a function to display the tasks
+function displayTasks() {
+  let taskList = document.getElementById('taskList');
+  taskList.innerHTML = '';
+  for (let i = 0; i < tasks.length; i++) {
+    let task = tasks[i];
+    let li = document.createElement('li');
+    li.innerHTML = `<h3>${task.summary}</h3>
+      <p>${task.description}</p>
+      <p><strong>Status:</strong> ${task.status}</p>`;
+    taskList.appendChild(li);
+  }
+}
+
+// Call the displayTasks function to initially display the tasks
+displayTasks();
+
+// Define a function to add a new task
+function addTask() {
+  let id = tasks.length + 1;
+  let summary = document.getElementById('summary').value;
+  let description = document.getElementById('description').value;
+  let status = 'To Do';
+  let task = new Task(id, summary, description, status);
+  tasks.push(task);
+  displayTasks();
+  document.getElementById('summary').value = '';
+  document.getElementById('description').value = '';
+}
+
+// Attach an event listener to the Add Task button
+let addButton = document.getElementById('addButton');
+addButton.addEventListener('click', addTask);
+
+  </script>
+</body>
+</html>
