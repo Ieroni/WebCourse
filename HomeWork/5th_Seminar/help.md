@@ -1,0 +1,1 @@
+in current hometask isn't clear how we could training with get\post and API workflow.
